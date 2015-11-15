@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!-- /*************************************************************************
+ * 
+ * RiverLog Software
+ * __________________
+ * 
+ *  [2016] - [2017] RiverLog Software 
+ *  All Rights Reserved.
+ * 
+ * NOTICE:  All information contained herein is, and remains
+ * the property of RiverLog Software and its suppliers,
+ * if any.  The intellectual and technical concepts contained
+ * herein are proprietary to RiverLog Software
+ * and its suppliers and may be covered by U.S. and Foreign Patents,
+ * patents in process, and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from RiverLog Software.
+ */
+ -->
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.riverlog.viewpos.model">
+	<class name="User" table="USERS">
+		<id name="id" column="USER_ID">
+			<generator class="native"/>
+		</id>
+		<property name="username" column="USERNAME" />
+		<property name="password" column="PASSWORD" />
+		<property name="email" column="EMAIL" />
+	</class>
+
+    
+    <sql-query name="callUserByName_SP">
+	<return alias="user" class="com.riverlog.viewpos.model.User"/>
+	<![CDATA[CALL GetStocks(:userid)]]>
+    </sql-query>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>  
+<!--  /*************************************************************************
+ * 
+ * RiverLog Software
+ * __________________
+ * 
+ *  [2016] - [2017] RiverLog Software 
+ *  All Rights Reserved.
+ * 
+ * NOTICE:  All information contained herein is, and remains
+ * the property of RiverLog Software and its suppliers,
+ * if any.  The intellectual and technical concepts contained
+ * herein are proprietary to RiverLog Software
+ * and its suppliers and may be covered by U.S. and Foreign Patents,
+ * patents in process, and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from RiverLog Software.
+ */ -->
+      
+  <session-factory>
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="show_sql">true</property>  
+    <mapping resource="com/riverlog/viewpos/model/User.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
