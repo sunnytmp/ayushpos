@@ -27,6 +27,8 @@ public class User {
     private String username;
     
     private String phone;
+    
+    private String fax;
      
     private String address;
      
@@ -38,7 +40,7 @@ public class User {
         id=0;
     }
      
-    public User(long id, String username, String address, String email,int age, int accountid, String phone){
+    public User(long id, String username, String address, String email,int age, int accountid, String phone, String fax){
         this.id = id;
         this.username = username;
         this.address = address;
@@ -57,6 +59,13 @@ public class User {
         this.phone = phone;
     }
     
+    public String getFax() {
+        return fax;
+    }
+ 
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
     
     public int getAccountid() {
         return accountid;
@@ -133,7 +142,7 @@ public class User {
     @Override
     public String toString() {
         return "User [id=" + id + ", username=" + username + ", address=" + address
-                + ", email=" + email + ", age=" + age + " accountid=" + accountid + " phone'" + phone + "]";
+                + ", email=" + email + ", age=" + age + " accountid=" + accountid + " phone'" + phone + " fax'" + fax +"]";
     }
      
  

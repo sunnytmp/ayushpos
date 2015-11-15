@@ -100,7 +100,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
  
            
           self.reset = function(){
-              self.user={id:null,username:'',address:'',email:'',accountid:'', phone:''};
+              self.user={id:null,username:'',address:'',email:'',accountid:'', phone:'', fax:''};
               $scope.myForm.$setPristine(); //reset Form
           };
  

@@ -101,6 +101,21 @@
                           </div>
                       </div> 
                       <div class="row">
+                     
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="file">fax</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.user.fax" name="uname" class="fax form-control input-sm" placeholder="Enter your fax" required ng-minlength="10"/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.phone.$error.required">This is a required field</span>
+                                      <span ng-show="myForm.phone.$error.minlength">Minimum length required is 10</span>
+                                      <span ng-show="myForm.phone.$invalid">This field is invalid </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> 
+                      
+                      <div class="row">
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Address</label>
                               <div class="col-md-7">
@@ -168,6 +183,7 @@
                               <td><span ng-bind="u.id"></span></td>
                               <td><span ng-bind="u.username"></span></td>
                                  <td><span ng-bind="u.phone"></span></td>
+                                 <td><span ng-bind="u.fax"></span></td>
                               <td><span ng-bind="u.address"></span></td>
                               <td><span ng-bind="u.email"></span></td>
                               <td><span ng-bind="u.age"></span></td>

@@ -104,7 +104,7 @@ public class ViewPosRestController {
   
         currentUser.setUsername(user.getUsername());
         currentUser.setPhone(user.getPhone());
-        
+        currentUser.setFax(user.getFax());
         currentUser.setAddress(user.getAddress());
         currentUser.setEmail(user.getEmail());
         currentUser.setAge(user.getAge());
