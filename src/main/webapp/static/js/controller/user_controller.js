@@ -17,7 +17,7 @@
  * from RiverLog Software.
  */
 'use strict';
-App.controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
+App.controller('UserController', ['$scope', 'UserService', '$window' , '$location',  function($scope, UserService, $window, $location) {
           var self = this;
           self.user={id:null,username:'',address:'',email:'',age:0,accountid:0};
           self.users=[];
@@ -33,8 +33,45 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
                                 }
                        );
           };
-            
-          self.createUser = function(user){
+  $scope.tabs = [{
+            title: 'Customer',
+            url: 'Customer.html'
+        }, {
+            title: 'Inventory',
+            url: '/viewpos'        //Switched the screens for the Kerala developers to step through and learn. Tier1 Group
+        }, {
+            title: 'Sales',
+            url: 'sales.html'
+    }];
+
+    $scope.currentTab = 'Customer.html';
+
+    $scope.onClickTab = function (tab) {
+        $scope.currentTab = tab.url;
+    }
+    
+    $scope.isActiveTab = function(tabUrl) {
+        return tabUrl == $scope.currentTab;
+    }
+;
+
+	self.noHrefTest = function () { 
+		      var con = document.getElementById('content')
+			   ,   xhr = new XMLHttpRequest();
+
+			   xhr.onreadystatechange = function (e) { 
+				if (xhr.readyState == 4 && xhr.status == 200) {
+				 con.innerHTML = xhr.responseText;
+				}
+			   }
+			 xhr.open("GET", "/viewpos", true);
+			 xhr.setRequestHeader('Content-type', 'text/html');
+			 xhr.send();
+			 con.innerHTML = xhr.responseText;			
+			 
+          };	 
+			
+		      self.createUser = function(user){
               UserService.createUser(user)
                       .then(
                       self.fetchAllUsers, 

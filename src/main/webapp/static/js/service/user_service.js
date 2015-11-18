@@ -47,7 +47,8 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
                                     }
                             );
             },
-             
+            
+				
             updateUser: function(user, id){
                     return $http.put('http://localhost:8080/viewpos/user/'+id, user)
                             .then(
