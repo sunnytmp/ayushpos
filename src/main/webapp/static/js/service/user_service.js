@@ -23,7 +23,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
     return {
          
             fetchAllUsers: function() {
-                    return $http.get('http://localhost:8080/viewpos/user/')
+                    return $http.get('http://localhost:8080/restpos-1.0.0-BUILD-SNAPSHOT/user/')
                             .then(
                                     function(response){
                                         return response.data;
@@ -36,7 +36,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
             },
              
             createUser: function(user){
-                    return $http.post('http://localhost:8080/viewpos/user/', user)
+                    return $http.post('http://localhost:8080/restpos-1.0.0-BUILD-SNAPSHOT/user/', user)
                             .then(
                                     function(response){
                                         return response.data;
@@ -50,7 +50,8 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
             
 				
             updateUser: function(user, id){
-                    return $http.put('http://localhost:8080/viewpos/user/'+id, user)
+                    return $http.put('http://localhost:8080/restpos-1.0.0-BUILD-SNAPSHOT/user/'+id, user)
+
                             .then(
                                     function(response){
                                         return response.data;
@@ -63,7 +64,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
             },
           
             deleteUser: function(id){
-                return $http.delete('http://localhost:8080/viewpos/user/'+id)
+                return $http.delete('http://localhost:8080/restpos-1.0.0-BUILD-SNAPSHOT/user/'+id)
                         .then(
                                 function(response){
                                     return response.data;
