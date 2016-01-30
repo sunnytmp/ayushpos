@@ -64,7 +64,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Bar Code</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Item.code" name="icode" class="username form-control input-sm" placeholder="Bar code" required ng-minlength="3"/>
+                                  <input type="text" ng-model="ctrl.Item.code" name="icode" class="username form-control input-sm" placeholder="Bar code" ng-blur="ctrl.getPOID();" required ng-minlength="3"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.code.$error.required">This is a required field</span>
                                       <span ng-show="myForm.code.$error.minlength">Minimum length required is 10</span>
@@ -94,10 +94,8 @@
                               <label class="col-md-2 control-lable" for="file">Category</label>
                               <div class="col-md-7">
 				
-						{{ctrl.Item.category.name}}
-
-					 <select ng-model="categories" ng-change="updateCatId(categories)">
-				<option ng-repeat="categories in ctrl.Categories" ng-selected="selectedItem == categories.id" value="{{categories.id}}">{{categories.name}}</option>
+					 <select ng-model="categories" ng-change="updateCatId()">
+				<option ng-repeat="categories in ctrl.Categories" ng-selected="ctrl.Item.category.name == categories.name" value="{{categories.id}}">{{categories.name}}</option>
 				 
 				</select>
 		
@@ -278,6 +276,7 @@
                       <thead>
                           <tr>
                               <th>Item </th>
+                              <th>Category</th>
                               <th>Price</th>
                                <th>Brand Name</th>
                               <th>Stock</th>
@@ -290,6 +289,7 @@
                           <tr ng-repeat="u in ctrl.Items">
                            
                               <td><span ng-bind="u.name"></span></td>
+                              <td><span ng-bind="u.category.name"></span></td>
                               <td><span ng-bind="u.price"></span></td>
                               <td><span ng-bind="u.brandname"></span></td>
                               <td><span ng-bind="u.stock"></span></td>

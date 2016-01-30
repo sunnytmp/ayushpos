@@ -23,7 +23,7 @@ App.factory('CatService', ['$http', '$q', function($http, $q){
     return {
          
             fetchAllCats: function() {
-                    return $http.get('http://localhost:8080/restpos/cat/')
+                    return $http.get('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/cat/')
                             .then(
                                     function(response){
                                         return response.data;
@@ -36,7 +36,7 @@ App.factory('CatService', ['$http', '$q', function($http, $q){
             },
              
             createCat: function(cat){
-                    return $http.post('http://localhost:8080/restpos/cat/', cat)
+                    return $http.post('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/cat/', cat)
                             .then(
                                     function(response){
                                         return response.data;
@@ -50,7 +50,7 @@ App.factory('CatService', ['$http', '$q', function($http, $q){
             
 				
             updateCat: function(cat, id){
-                    return $http.put('http://localhost:8080/restpos/cat/'+id, cat)
+                    return $http.put('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/cat/'+id, cat)
                             .then(
                                     function(response){
                                         return response.data;
@@ -63,7 +63,7 @@ App.factory('CatService', ['$http', '$q', function($http, $q){
             },
           
             deleteCat: function(id){
-	            return $http.delete('http://localhost:8080/restpos/cat/'+id)
+	            return $http.delete('localhost:8080/restpos/cat/'+id)
 				        .then(
                                 function(response){
                                     return response.data;

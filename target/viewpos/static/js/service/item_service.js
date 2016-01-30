@@ -23,7 +23,7 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
     return {
 		createCategory: function() {
 				
-		            return $http.get('http://localhost:8080/restpos/cat/')
+		            return $http.get('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/cat/')
                             .then(
 						            function(response){
 									//	alert(JSON.stringify(response.data));
@@ -38,7 +38,7 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
 
 	   
             fetchAllItems: function() {
-                    return $http.get('http://localhost:8080/restpos/item/')
+                    return $http.get('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/item/')
                             .then(
                                     function(response){
                                         return response.data;
@@ -52,7 +52,7 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
              
             createItem: function(Item){
 				console.log(JSON.stringify(Item))	;
-                    return $http.post('http://localhost:8080/restpos/item/', Item)
+                    return $http.post('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/item/', Item)
                             .then(
                                     function(response){
                                         return response.data;
@@ -67,7 +67,7 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
 				
             updateItem: function(Item, id){
 				console.log(JSON.stringify(Item))	;
-                    return $http.put('http://localhost:8080/restpos/item/'+id, Item)
+                    return $http.put('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/item/'+id, Item)
                             .then(
                                     function(response){
                                         return response.data;
@@ -80,7 +80,7 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
             },
           
             deleteItem: function(id){
-                return $http.delete('http://localhost:8080/restpos/item/'+id)
+                return $http.delete('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/item/'+id)
                         .then(
                                 function(response){
                                     return response.data;

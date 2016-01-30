@@ -45,17 +45,21 @@
     </style>
      <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+        <script src="<c:url value='/static/js/app.js' />"></script>
+        <script src="<c:url value='/static/js/service/cat_service.js' />"></script>
+      <script src="<c:url value='/static/js/controller/cat_controller.js' />"></script>
+     
   </head>
   <body ng-app="myApp" class="ng-cloak">
   
       <div class="generic-container" ng-controller="CatController as ctrl">
+    
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">Add Category</span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       <input type="hidden" ng-model="ctrl.cat.id" />
-
- 		
 						<div class="row">
                      
                           <div class="form-group col-md-12">
@@ -126,10 +130,7 @@
               </div>
           </div>
       </div>
-       
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-      <script src="<c:url value='/static/js/app.js' />"></script>
-      <script src="<c:url value='/static/js/service/cat_service.js' />"></script>
-      <script src="<c:url value='/static/js/controller/cat_controller.js' />"></script>
+     
+         
   </body>
 </html>

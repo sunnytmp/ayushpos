@@ -33,18 +33,38 @@ App.controller('UserController', ['$scope', 'UserService', '$window' , '$locatio
                                 }
                        );
           };
-  $scope.tabs = [{
+          
+          
+  $scope.tabs= [{
             title: 'Customer',
-            url: 'Customer.html'
+            url: '/viewpos'
         }, {
-            title: 'Inventory',
-            url: '/viewpos'        //Switched the screens for the Kerala developers to step through and learn. Tier1 Group
+            title: 'Category',
+            url: 'category'       
         }, {
             title: 'Sales',
             url: 'sales.html'
-    }];
+        },  {
+        	title: 'Item',
+        	url: 'http://localhost:8080/viewpos/Item'
+        },{
+        	title: 'Supplier',
+        	url: 'http://localhost:8080/viewpos/supplier'
+        }, {
+        	title: 'Purchase',
+        	url: 'http://localhost:8080/viewpos/purchase'
+        }, {
+        	title: 'Bank',
+        	url: 'http://localhost:8080/viewpos/addbank'
+        },{
+        	title: 'Bank Entry',
+        	url: 'http://localhost:8080/viewpos/bankentry'
+        },{
+        	title: 'Reports',
+        	url: 'http://localhost:8080/viewpos/report'
+       }];
 
-    $scope.currentTab = 'Customer.html';
+    $scope.currentTab = 'Customer.html';  
 
     $scope.onClickTab = function (tab) {
         $scope.currentTab = tab.url;
@@ -69,8 +89,11 @@ App.controller('UserController', ['$scope', 'UserService', '$window' , '$locatio
 			 xhr.send();
 			 con.innerHTML = xhr.responseText;			
 			 
-          };	 
-			
+          };	
+          
+         
+          
+//--------------------------------------------------------------------------------------------------------------------//			
 		      self.createUser = function(user){
               UserService.createUser(user)
                       .then(
@@ -100,6 +123,7 @@ App.controller('UserController', ['$scope', 'UserService', '$window' , '$locatio
                               } 
                   );
           };
+
  
           self.fetchAllUsers();
  
@@ -137,8 +161,12 @@ App.controller('UserController', ['$scope', 'UserService', '$window' , '$locatio
  
            
           self.reset = function(){
-              self.user={id:null,username:'',address:'',email:'',accountid:'', phone:'', fax:''};
+              self.user={id:null,username:'',address:'',email:'',accountid:'', phone:'',job:'',customertype:'', fax:''};
               $scope.myForm.$setPristine(); //reset Form
           };
  
       }]);
+
+
+
+	

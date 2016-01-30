@@ -23,7 +23,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
     return {
          
             fetchAllUsers: function() {
-                    return $http.get('http://localhost:8080/restpos-1.0.0-BUILD-SNAPSHOT/user/')
+                    return $http.get('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/user/')
                             .then(
                                     function(response){
                                         return response.data;
@@ -36,7 +36,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
             },
              
             createUser: function(user){
-                    return $http.post('http://localhost:8080/restpos-1.0.0-BUILD-SNAPSHOT/user/', user)
+                    return $http.post('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/user/', user)
                             .then(
                                     function(response){
                                         return response.data;
@@ -50,7 +50,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
             
 				
             updateUser: function(user, id){
-                    return $http.put('http://localhost:8080/restpos-1.0.0-BUILD-SNAPSHOT/user/'+id, user)
+                    return $http.put('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/user/'+id, user)
 
                             .then(
                                     function(response){
@@ -64,7 +64,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
             },
           
             deleteUser: function(id){
-                return $http.delete('http://localhost:8080/restpos-1.0.0-BUILD-SNAPSHOT/user/'+id)
+                return $http.delete('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/user/'+id)
                         .then(
                                 function(response){
                                     return response.data;

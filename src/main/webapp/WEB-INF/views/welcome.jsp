@@ -9,7 +9,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 <script src="<c:url value='/static/js/app.js' />"></script>
 <script src="<c:url value='/static/js/controller/user_controller.js' />"></script>
-  <script src="<c:url value='/static/js/service/user_service.js' />"></script>	  
+  <script src="<c:url value='/static/js/service/user_service.js' />"></script>	
+<script src="<c:url value='/static/js/controller/cat_controller.js' />"></script>
+<script src="<c:url value='/static/js/service/cat_service.js' />"></script>
+<script src="<c:url value='/static/js/service/item_service.js' />"></script>
+<script src="<c:url value='/static/js/controller/item_controller.js' />"></script>
+ <script src="<c:url value='/static/js/service/po_service.js' />"></script>
+<script src="<c:url value='/static/js/controller/po_controller.js' />"></script>
+  
 </head>
   <body ng-app="myApp" class="ng-cloak">
 <style>
@@ -45,17 +52,20 @@ li {
         <ul>
             <li ng-repeat="tab in tabs" 
                 ng-class="{active:isActiveTab(tab.url)}" 
-                ng-click="onClickTab(tab)">{{tab.title}}</li>
+                ng-click="onClickTab(tab)">{{tab.title}}
+                </li>
         </ul>
         <div id="mainView">
             <div ng-include="currentTab"></div>
         </div>
     </div>
+    
     <script type="text/ng-template" id="one.tpl.html">
 		<div id="viewOne">
 			<h1>Customer</h1>
 			<p>Customer Screen Will Appear Here.</p>
 		</div>
 	</script>
+	
 </body>
 </html>

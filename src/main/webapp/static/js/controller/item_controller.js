@@ -20,6 +20,7 @@
 App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$location',  function($scope, ItemService, $window, $location) {
 		 
 		  var categoridi = 0;
+		 
           var self = this;
           self.Items={id:null,name:'',descp:''};
           self.Items=[];
@@ -27,8 +28,10 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
 		    self.Categories={id:null,name:'',description:''};
         //  self.Categories=[];
 	
-   $scope.updateCatId = function(cati) {
-	categoridi = cati;
+      
+   $scope.updateCatId = function() {
+	categoridi = $scope.categories;
+	console.log('categoryid ' , categoridi);
    };
 		   $scope.updateCatId();
 	

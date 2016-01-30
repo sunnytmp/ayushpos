@@ -38,7 +38,7 @@ App.controller('CatController', ['$scope', 'CatService', '$window' , '$location'
             url: 'Customer.html'
         }, {
             title: 'Inventory',
-            url: '/viewpos'        //Switched the screens for the Kerala developers to step through and learn. Tier1 Group
+            url: '/viewpos'       
         }, {
             title: 'Sales',
             url: 'sales.html'
@@ -48,7 +48,7 @@ App.controller('CatController', ['$scope', 'CatService', '$window' , '$location'
 
     $scope.onClickTab = function (tab) {
         $scope.currentTab = tab.url;
-    }
+    };
     
     $scope.isActiveTab = function(tabUrl) {
         return tabUrl == $scope.currentTab;
@@ -63,7 +63,7 @@ App.controller('CatController', ['$scope', 'CatService', '$window' , '$location'
 				if (xhr.readyState == 4 && xhr.status == 200) {
 				 con.innerHTML = xhr.responseText;
 				}
-			   }
+			   };
 			 xhr.open("GET", "/viewpos", true);
 			 xhr.setRequestHeader('Content-type', 'text/html');
 			 xhr.send();
