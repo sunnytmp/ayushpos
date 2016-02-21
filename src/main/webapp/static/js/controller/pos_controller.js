@@ -1,0 +1,22 @@
+/*************************************************************************
+ * 
+ * RiverLog Software
+ * __________________
+ * 
+ *  [2016] - [2017] RiverLog Software 
+ *  All Rights Reserved.
+ * 
+ * NOTICE:  All information contained herein is, and remains
+ * the property of RiverLog Software and its suppliers,
+ * if any.  The intellectual and technical concepts contained
+ * herein are proprietary to RiverLog Software
+ * and its suppliers and may be covered by U.S. and Foreign Patents,
+ * patents in process, and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from RiverLog Software.
+ */'use strict';App.controller('POSController',function($scope,$http,$q){$scope.getDatetime=new Date();$scope.food=function(){return $http.get('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/item/').then(function successCallback(response){$scope.food=response.data;return response.data;},function errorCallback(response){console.error('Error happened');alert(JSON.stringify(response.data));return $q.reject(response);});}
+$scope.itemsCnt=1;$scope.order=[];$scope.units=[];$scope.tot=0;$scope.totalUnitsPrice=0;$scope.finalOrder=[];$scope.compose="";$scope.getChange=function(index){$scope.order[$scope.order.length-1].qty=parseInt(index);$scope.totalUnitsPrice=(parseInt($scope.order[$scope.order.length-1].item.price)*parseInt(index));$scope.tot=parseInt($scope.getSum())+parseInt($scope.totalUnitsPrice)-parseInt($scope.order[$scope.order.length-1].item.price)+parseInt($scope.getTax());$scope.finalOrder[$scope.finalOrder.length-1].qty=parseInt(index);}
+$scope.add=function(item,itemqty){var foodItem={id:$scope.itemsCnt,item:item,qty:itemqty};$scope.order.push(foodItem);$scope.itemsCnt=$scope.order.length;$scope.tot=parseInt($scope.tot)+parseInt(item.price)+parseInt(item.tax);$scope.compose='{"itemid":'+item.id+',"qty":'+itemqty+',"price":'+item.price+'}';$scope.compose=JSON.parse($scope.compose);$scope.finalOrder.push($scope.compose);};$scope.getSum=function(){var i=0,sum=0;for(;i<$scope.order.length;i++){sum+=parseInt($scope.order[i].item.price,10);}
+return sum;};$scope.getTax=function(){var i=0,sum=0;for(;i<$scope.order.length;i++){sum+=parseInt($scope.order[i].item.tax,10);}
+return sum;};$scope.deleteItem=function(index){var element=parseInt(parseInt(index));$scope.tot=parseInt($scope.tot)-(parseInt($scope.order[parseInt(element)].item.price*$scope.order[parseInt(element)].qty))-$scope.order[parseInt(element)].item.tax;$scope.order.splice(index,1);$scope.finalOrder.splice(index,1);};$scope.checkout=function(index){var so='{"id":'+10+',"orderDetails":'+JSON.stringify($scope.finalOrder)+',"orderNumber":'+'"122NEW19"}';so=JSON.parse(so);console.log(JSON.stringify(so));var res=$http.post('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/SalesOrder/',JSON.stringify(so));res.success(function(data,status,headers,config){$scope.message=data;});res.error(function(data,status,headers,config){alert("failure message: "+JSON.stringify({data:data}));});};$scope.clearOrder=function(){$scope.order=[];};$scope.NotebookListCtrl=function(){$scope.notebooks=[{"name":"RiverLog","procesor":"keypeople i5","age":2011},{"name":"BigLeaf","procesor":"keypeople i7","age":2010},{"name":"BigLeaf","procesor":"keypeople core 2 duo","age":2008},{"name":"Soatools","procesor":"keypeople core 2 duo","age":2012},{"name":"Paragon","procesor":"Soadevelopers","age":2006},{"name":"RiverLog","procesor":"keypeople i5","age":2009},{"name":"BigLeaf","procesor":"keypeople i7","age":2008},{"name":"RiverLog","procesor":"keypeople i5","age":2011},{"name":"BigLeaf","procesor":"keypeople i7","age":2010},{"name":"BigLeaf","procesor":"keypeople core 2 duo","age":2008},{"name":"Soatools","procesor":"keypeople core 2 duo","age":2012},{"name":"Paragon","procesor":"Soadevelopers","age":2006},{"name":"RiverLog","procesor":"keypeople i5","age":2009},{"name":"BigLeaf","procesor":"keypeople i7","age":2008},{"name":"RiverLog","procesor":"keypeople i5","age":2011},{"name":"BigLeaf","procesor":"keypeople i7","age":2010},{"name":"BigLeaf","procesor":"keypeople core 2 duo","age":2008},{"name":"Soatools","procesor":"keypeople core 2 duo","age":2012},{"name":"Paragon","procesor":"Soadevelopers","age":2006},{"name":"RiverLog","procesor":"keypeople i5","age":2009},{"name":"BigLeaf","procesor":"keypeople i7","age":2008}];$scope.orderList="name";};});

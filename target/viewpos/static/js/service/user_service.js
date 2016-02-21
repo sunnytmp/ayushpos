@@ -17,13 +17,14 @@
  * from RiverLog Software.
  */
 'use strict';
- 
+var myVar = 'http://localhost'; // Declare a global variable
+var myaws = 'http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com';
 App.factory('UserService', ['$http', '$q', function($http, $q){
  
     return {
          
             fetchAllUsers: function() {
-                    return $http.get('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/user/')
+                    return $http.get(myaws +':8080/restpos/user/')
                             .then(
                                     function(response){
                                         return response.data;
@@ -36,7 +37,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
             },
              
             createUser: function(user){
-                    return $http.post('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/user/', user)
+                    return $http.post(myaws +':8080/restpos/user/', user)
                             .then(
                                     function(response){
                                         return response.data;
@@ -50,7 +51,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
             
 				
             updateUser: function(user, id){
-                    return $http.put('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/user/'+id, user)
+                    return $http.put(myaws +':8080/user/'+id, user)
 
                             .then(
                                     function(response){
@@ -64,7 +65,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
             },
           
             deleteUser: function(id){
-                return $http.delete('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/user/'+id)
+                return $http.delete(myaws +':8080/restpos/user/'+id)
                         .then(
                                 function(response){
                                     return response.data;

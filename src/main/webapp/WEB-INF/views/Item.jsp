@@ -59,12 +59,15 @@
 				 
                       <input type="hidden" ng-model="ctrl.Item.id" />
 
- 							<div class="row">
+					  <input type="hidden" ng-model="ctrl.val" value={{ctrl.val}}/>
+						
+
+ 						<div class="row">
                      
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Bar Code</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.Item.code" name="icode" class="username form-control input-sm" placeholder="Bar code" ng-blur="ctrl.getPOID();" required ng-minlength="3"/>
+                                  <input type="text" ng-model="ctrl.Item.code" name="icode" class="username form-control input-sm" placeholder="Enter Bar Code" required ng-minlength="3"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.code.$error.required">This is a required field</span>
                                       <span ng-show="myForm.code.$error.minlength">Minimum length required is 10</span>
@@ -95,7 +98,7 @@
                               <div class="col-md-7">
 				
 					 <select ng-model="categories" ng-change="updateCatId()">
-				<option ng-repeat="categories in ctrl.Categories" ng-selected="ctrl.Item.category.name == categories.name" value="{{categories.id}}">{{categories.name}}</option>
+				<option ng-repeat="categories in ctrl.Categories" ng-selected="ctrl.Item.category.name == categories.name" value={{categories}}>{{categories.name}}</option>
 				 
 				</select>
 		
@@ -117,7 +120,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Price</label>
                               <div class="col-md-7">
-                                  <input type="number" ng-model="ctrl.Item.price" name="price" class="price form-control input-sm" placeholder="Enter the price" required ng-minlength="1"/>
+                                  <input type="number" ng-model="ctrl.Item.price" name="price" class="price form-control input-sm" placeholder="Enter the price" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required ng-minlength="1"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.price.$error.required">This is a required field</span>
                                       <span ng-show="myForm.price.$error.minlength">Minimum length required is 2</span>

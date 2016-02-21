@@ -17,18 +17,28 @@
  * from RiverLog Software.
  */
 'use strict';
-App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$location',  function($scope, ItemService, $window, $location) {
+App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$location',  function( $scope, ItemService, $window, $location) {
 		 
 		  var categoridi = 0;
+		 
           var self = this;
           self.Items={id:null,name:'',descp:''};
           self.Items=[];
-         
+           self.val = "";  
 		    self.Categories={id:null,name:'',description:''};
         //  self.Categories=[];
+		    
+		    
+   $scope.updateCatId = function() {
+	categoridi = $scope.categories;
+	console.log('categoryid ' , categoridi);
+	self.val = $window.location.href;
+	if (self.val.indexOf('=') > -1 ){
+	  self.val = self.val.substring(self.val.indexOf('=')+1);
+	} else {
+		self.val = 16;
+	}
 	
-   $scope.updateCatId = function(cati) {
-	categoridi = cati;
    };
 		   $scope.updateCatId();
 	
@@ -92,6 +102,10 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
                   );
 		  };		
 		      self.createItem = function(Item){
+		        	 if (categoridi === null || typeof categoridi === "undefined"  || categoridi === "") {
+		         	 	alert("Why Category is left blank ?");
+		         	 	return;
+		        	 }
               ItemService.createItem(Item)
                       .then(
                       self.fetchAllItems, 
@@ -102,7 +116,15 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
           };
  
          self.updateItem = function(Item, id,$scope){
+        	
+        	 console.log(JSON.stringify(Item)) ;
+        	 if (categoridi === null || typeof categoridi === "undefined"  || categoridi === "") {
+        	 	alert("Why Category is left blank ?");
+        	 	return;
+        	 }else {
 			 Item.category.id = categoridi;
+        	 }
+			 Item.po.id = self.val;
 		      ItemService.updateItem(Item, id)
                       .then(
                               self.fetchAllItems, 

@@ -46,22 +46,22 @@ App.controller('UserController', ['$scope', 'UserService', '$window' , '$locatio
             url: 'sales.html'
         },  {
         	title: 'Item',
-        	url: 'http://localhost:8080/viewpos/Item'
+        	url: 'Item?val=0'
         },{
         	title: 'Supplier',
-        	url: 'http://localhost:8080/viewpos/supplier'
+        	url: 'supplier'
         }, {
         	title: 'Purchase',
-        	url: 'http://localhost:8080/viewpos/purchase'
+        	url: 'purchase'
         }, {
         	title: 'Bank',
-        	url: 'http://localhost:8080/viewpos/addbank'
+        	url: 'addbank'
         },{
         	title: 'Bank Entry',
-        	url: 'http://localhost:8080/viewpos/bankentry'
+        	url: 'bankentry'
         },{
         	title: 'Reports',
-        	url: 'http://localhost:8080/viewpos/report'
+        	url: 'report'
        }];
 
     $scope.currentTab = 'Customer.html';  

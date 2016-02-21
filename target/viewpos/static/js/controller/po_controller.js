@@ -17,11 +17,12 @@
  * from RiverLog Software.
  */
 'use strict';
-App.controller('POController', ['$scope', 'POService', '$window' , '$location',  function($scope, POService, $window, $location) {
+App.controller('POController', ['$rootScope','$scope', 'POService', '$window' , '$location',  function($rootScope,$scope, POService, $window, $location) {
           var self = this;
           self.user={id:null,username:'',address:'',email:'',age:0,accountid:0};
           self.users=[];
-               
+          self.CreatePOS={id:null,name:'',descp:'',phone:'',phone2:'',address1:'',address2:'',address3:''};
+          
           self.fetchAllPOS = function(){
               POService.fetchAllPOS()
                   .then(
@@ -34,9 +35,7 @@ App.controller('POController', ['$scope', 'POService', '$window' , '$location', 
                        );
           };
           
-
-
-	self.noHrefTest = function () { 
+    	self.noHrefTest = function () { 
 		      var con = document.getElementById('content')
 			   ,   xhr = new XMLHttpRequest();
 
@@ -50,15 +49,34 @@ App.controller('POController', ['$scope', 'POService', '$window' , '$location', 
 			 xhr.send();
 			 con.innerHTML = xhr.responseText;			
 			 
-          };	
+          };		
+          
           
          
+  self.sendPoId = function(poid){
+	  POService.sendPoId(poid);
+	  
+     
+};
+  
+          self.createPOS = function(PurchaseOrder){ 
+ 	         POService.createPOS(PurchaseOrder) 
+ 					 .then(
+ 					 function(d) {
+                                     self.sup = d.slice();
+ 									
+                                },
+                                 function(errResponse){
+                                     console.error('Error while fetching Suppliers');
+                                 }						  
+                   );
+ 		  };	      
           
 //--------------------------------------------------------------------------------------------------------------------//			
-		      self.createPO = function(user){
-              UserService.createPO(user)
+		      self.createPO = function(PurchaseOrder){
+		    	  POService.createPO(PurchaseOrder)
                       .then(
-                      self.fetchAllUsers, 
+                      self.fetchAllPOS, 
                               function(errResponse){
                                    console.error('Error while creating User.');
                               } 
@@ -89,20 +107,22 @@ App.controller('POController', ['$scope', 'POService', '$window' , '$location', 
           self.fetchAllPOS();
  
           self.submit = function() {
-              if(self.user.id==null){
-                  console.log('Saving New User', self.po);    
+              if(self.po.id==null){
+                  console.log('Saving New PO', self.po);    
                   self.createPO(self.po);
               }else{
-                  self.updateUser(self.po, self.po.id);
-                  console.log('User updated with id ', self.po.id);
+                  self.updatePo(self.po, self.po.id);
+                  console.log('PO updated with id ', self.po.id);
               }
               self.reset();
           };
                
           self.edit = function(id){
               console.log('id to be edited', id);
-              for(var i = 0; i < self.users.length; i++){
+             
+              for(var i = 0; i < self.pos.length; i++){
                   if(self.pos[i].id == id) {
+                	  console.log("Posid from array" ,self.pos[i].id);
                      self.po = angular.copy(self.pos[i]);
                      break;
                   }

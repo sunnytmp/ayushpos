@@ -147,7 +147,7 @@
                           </div>
                       </div>
 
-						<button type="button" ng-click="ctrl.sendPoId(7)" >Add Items</button>
+						<button type="button" ng-model="ctrl.po.id" ng-click=ctrl.sendPoId(ctrl.po.id) >Add Items</button>
 
 
 

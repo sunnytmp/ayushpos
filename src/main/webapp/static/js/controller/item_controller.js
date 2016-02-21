@@ -17,21 +17,31 @@
  * from RiverLog Software.
  */
 'use strict';
-App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$location',  function($scope, ItemService, $window, $location) {
+App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$location',  function( $scope, ItemService, $window, $location) {
 		 
-		  var categoridi = 0;
+		  var categoridi = {id:null,name:'',description:''};
 		 
           var self = this;
           self.Items={id:null,name:'',descp:''};
           self.Items=[];
-         
+           self.val = "";  
+           self.po = {"id":16};
 		    self.Categories={id:null,name:'',description:''};
         //  self.Categories=[];
-	
-      
+		    
+		    
    $scope.updateCatId = function() {
+	  
 	categoridi = $scope.categories;
 	console.log('categoryid ' , categoridi);
+	self.val = $window.location.href;
+	if (self.val.indexOf('=') > -1 ){
+	  self.val = self.val.substring(self.val.indexOf('=')+1);
+	} else {
+		self.val = 16;
+		
+	}
+	
    };
 		   $scope.updateCatId();
 	
@@ -95,6 +105,13 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
                   );
 		  };		
 		      self.createItem = function(Item){
+		        	 if (categoridi === null || typeof categoridi === "undefined"  || categoridi === "") {
+		         	 	alert("Why Category is left blank ?");
+		         	 	return;
+		        	 }else{
+		        		 Item.category = JSON.parse(categoridi);
+		        		 alert(JSON.stringify(Item));
+		        	 }
               ItemService.createItem(Item)
                       .then(
                       self.fetchAllItems, 
@@ -105,7 +122,16 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
           };
  
          self.updateItem = function(Item, id,$scope){
-			 Item.category.id = categoridi;
+        	
+        	 console.log(JSON.stringify(Item)) ;
+        	 if (categoridi === null || typeof categoridi === "undefined"  || categoridi === "") {
+        	 	alert("Why Category is left blank ?");
+        	 	return;
+        	 }else {
+			 Item.category = JSON.parse(categoridi);
+        	 }
+        	 Item.po = self.po;
+			 Item.po.id = self.val;
 		      ItemService.updateItem(Item, id)
                       .then(
                               self.fetchAllItems, 

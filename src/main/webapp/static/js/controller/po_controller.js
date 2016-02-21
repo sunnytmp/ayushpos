@@ -17,7 +17,7 @@
  * from RiverLog Software.
  */
 'use strict';
-App.controller('POController', ['$scope', 'POService', '$window' , '$location',  function($scope, POService, $window, $location) {
+App.controller('POController', ['$rootScope','$scope', 'POService', '$window' , '$location',  function($rootScope,$scope, POService, $window, $location) {
           var self = this;
           self.user={id:null,username:'',address:'',email:'',age:0,accountid:0};
           self.users=[];
@@ -54,7 +54,8 @@ App.controller('POController', ['$scope', 'POService', '$window' , '$location', 
           
          
   self.sendPoId = function(poid){
-	  POService.sendPoId(poid)
+	  POService.sendPoId(poid);
+	  
      
 };
   
