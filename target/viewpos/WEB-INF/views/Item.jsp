@@ -46,9 +46,20 @@
      <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
 
+
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+      <script src="<c:url value='/static/js/app.js' />"></script>  
+      <script src="<c:url value='/static/js/service/item_service.js' />"></script>
+      <script src="<c:url value='/static/js/controller/item_controller.js' />"></script>
+
   </head>
   <body ng-app="myApp" class="ng-cloak">
-    
+    <%
+    if (request.getSession().getAttribute("userid_apos") == null) {
+  	  out.print("Un-Authorized Access Attempt! This attempt has sent an alert!");  
+  	  return;
+    }
+      %>
       <div class="generic-container" ng-controller="ItemController as ctrl" ng-init="ctrl.createCategory()">
 
           <div class="panel panel-default">
@@ -98,7 +109,7 @@
                               <div class="col-md-7">
 				
 					 <select ng-model="categories" ng-change="updateCatId()">
-				<option ng-repeat="categories in ctrl.Categories" ng-selected="ctrl.Item.category.name == categories.name" value="{{categories.id}}">{{categories.name}}</option>
+				<option ng-repeat="categories in ctrl.Categories" ng-selected="ctrl.Item.category.name == categories.name" value={{categories}}>{{categories.name}}</option>
 				 
 				</select>
 		
@@ -309,10 +320,6 @@
 		    	 
       </div>
      
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-      <script src="<c:url value='/static/js/app.js' />"></script>
-      <script src="<c:url value='/static/js/service/item_service.js' />"></script>
-      <script src="<c:url value='/static/js/controller/item_controller.js' />"></script>
 	   
   </body>
 </html>

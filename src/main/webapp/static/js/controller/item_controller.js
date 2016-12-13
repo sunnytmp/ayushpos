@@ -28,8 +28,10 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
            self.po = {"id":16};
 		    self.Categories={id:null,name:'',description:''};
         //  self.Categories=[];
-		    
-		    
+		  //  with item included 
+		//   self.pos={"id":null,"OrderNumber":null,"rate":null,"orderDt":null,"deliveryDt":null,"qty":0,"itemId":0,"sup":null,"totAmt":0,"notes":null,"Item":{}};
+		//Without item included.
+		    self.pos={"orderNumber":null,"rate":null,"orderDt":null,"deliveryDt":null,"qty":0,"itemcd":0,"sup":0,"totAmt":0,"notes":null,"catid":0,"itemdesc":null,"Item":{}};
    $scope.updateCatId = function() {
 	  
 	categoridi = $scope.categories;
@@ -110,7 +112,7 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
 		         	 	return;
 		        	 }else{
 		        		 Item.category = JSON.parse(categoridi);
-		        		 alert(JSON.stringify(Item));
+		        		// alert(JSON.stringify(Item));
 		        	 }
               ItemService.createItem(Item)
                       .then(
@@ -121,6 +123,46 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
                   );
           };
  
+          //POItem together
+          self.createPOItem = function(POItem){
+	        	 if (categoridi === null || typeof categoridi === "undefined"  || categoridi === "") {
+	         	 	alert("Category is left blank. Please choose category");
+	         	 	return;
+	        	 }else{
+	        		 POItem.category = JSON.parse(categoridi);
+	        		 POItem.orderNumber = self.pos.ordernumber;
+	        	//	 POItem.rate = self.pos.price;
+	        	//	 POItem.orderDt=self.pos.orderDt;
+	        	//	 POItem.deliveryDt=self.pos.deliveryDt;
+	        		 POItem.qty=self.pos.Item.qty;
+	        		 POItem.itemcd=self.pos.Item.code;
+	        		 POItem.itemdesc=self.pos.Item.itemdesc;
+	        		 POItem.catid=POItem.category.id;
+	        		 POItem.totAmt=self.pos.Item.price;
+	        		 POItem.notes=self.pos.notes;
+	        		 POItem.supplierId=self.pos.Item.supplierId;
+	        		 
+	        		 /* Deletes for later use */
+	        		 delete POItem.sup;
+	        		 delete POItem.rate;
+	        		 delete POItem.orderDt;
+	        		 delete POItem.deliveryDt;
+	        		 delete POItem.itemId;
+	        		 delete POItem.Item;
+	        		 delete POItem.ordernumber;
+	        		 delete POItem.category;
+	        		 alert(JSON.stringify(POItem));
+	        	 }
+       ItemService.createPOItem(POItem)
+               .then(
+               self.fetchAllItems, 
+                       function(errResponse){
+                            console.error('Error while creating POItem.');
+                       } 
+           );
+   };
+          
+          
          self.updateItem = function(Item, id,$scope){
         	
         	 console.log(JSON.stringify(Item)) ;
@@ -201,5 +243,16 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
 	     	alert("Done");
 		};
  
- 
+        //  PART OF THE STOCK TAKING.
+		self.submit_poitem = function() {
+            if(self.pos.Item.id==null){
+                console.log('Saving New Items - Part of Purchase Order', self.pos); 
+                self.createPOItem(self.pos);
+            }else{
+                self.updateItem(self.pos.id, self.pos.id);
+                console.log('PO ITEM together. Need to update poitem NOT Just ITEM ', self.Item.id);
+            }
+            self.reset();
+        };
+         
       }]);

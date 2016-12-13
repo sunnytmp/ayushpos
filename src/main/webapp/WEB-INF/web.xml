@@ -21,6 +21,16 @@
  */ -->
 <web-app>
   <display-name>Ayush POS</display-name>
+  <servlet>
+  	<servlet-name>RefreshMumDC</servlet-name>
+  	<display-name>RefreshMumDC</display-name>
+  	<description></description>
+  	<servlet-class>RefreshMumDC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>RefreshMumDC</servlet-name>
+  	<url-pattern>/RefreshMumDC</url-pattern>
+  </servlet-mapping>
   
   
   

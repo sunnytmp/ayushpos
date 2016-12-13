@@ -52,7 +52,12 @@
      
   </head>
   <body ng-app="myApp" class="ng-cloak">
-  
+  <%
+    if (request.getSession().getAttribute("userid_apos") == null) {
+  	  out.print("Un-Authorized Access Attempt! This attempt has sent an alert!");  
+  	  return;
+    }
+      %>
       <div class="generic-container" ng-controller="CatController as ctrl">
     
           <div class="panel panel-default">

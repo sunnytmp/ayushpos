@@ -78,6 +78,12 @@
   
   </head>
   <body ng-app="myApp" class="ng-cloak" style="background-color:wheat;">
+  <%
+    if (request.getSession().getAttribute("userid_apos") == null) {
+  	  out.print("Un-Authorized Access Attempt! This attempt has sent an alert!");  
+  	  return;
+    }
+      %>
   <form method="POST" action="/viewpos/bankentrydb">
       <div class="generic-container">
           <div class="panel panel-default">

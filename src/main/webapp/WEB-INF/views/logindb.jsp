@@ -11,7 +11,8 @@
 <head>
 
 <%  
-			String CONNECTION_URL="jdbc:mysql://localhost:3306/localview";
+		    String serverlocal = "jdbc:mysql://localhost:3306/";
+			String CONNECTION_URL=serverlocal+"usersdb";
 			String USERNAME="root";  
 			String PASSWORD="form";  
 			java.sql.Connection con=null;
@@ -22,7 +23,7 @@
 				Class.forName("com.mysql.jdbc.Driver").newInstance(); 
 				con = DriverManager.getConnection(CONNECTION_URL,USERNAME,PASSWORD); 
 				Statement st= con.createStatement();
-				rs=st.executeQuery("select password from localview.login where username= '"+userid+"'");
+				rs=st.executeQuery("select password from usersdb.login where username= '"+userid+"'");
 				
 				if(rs.next()) 
 					{ 
@@ -30,7 +31,8 @@
 
 							if(pass.equals(pwd)) 
 								{ 
-						
+								    HttpSession session2 = request.getSession();  
+							        session2.setAttribute("userid_apos",userid);  
 									response.sendRedirect("/viewpos/welcome");
 								} 
 			  				else 

@@ -1,0 +1,131 @@
+/*!
+ *************************************************************************
+ * 
+ * RiverLog Software
+ * __________________
+ * 
+ *  [2016] - [2017] RiverLog Software 
+ *  All Rights Reserved.
+ * 
+ * NOTICE:  All information contained herein is, and remains
+ * the property of RiverLog Software and its suppliers,
+ * if any.  The intellectual and technical concepts contained
+ * herein are proprietary to RiverLog Software
+ * and its suppliers and may be covered by U.S. and Foreign Patents,
+ * patents in process, and are protected by trade secret or copyright law.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from RiverLog Software.
+ */
+
+/*! RiverLog Etched Software */
+
+
+@media print {
+	
+	.sep {
+	
+        border-bottom:5px solid black !important;
+        
+            }
+.sep td  {
+       border-bottom: 1px solid red !important;
+        padding-bottom:5px solid black !important;
+       
+    }
+  }
+  @media screen {
+	.sep {
+        border: 1px solid black !important;
+        border-bottom:5px solid black !important;
+        
+            }
+.sep td  {
+        padding-bottom:5px solid black !important;
+       
+    }
+  }
+
+    
+html {
+   font-family: "Calibri";
+   font-size:5;
+   text-align: center;
+  // border: 3px solid green;
+   
+ }
+ body {
+       width: 5.5in; /* was 8.5in */
+        height: 8.5in; /* was 5.5in */
+        display: block;
+       
+       
+ }
+ @page {
+      size: 5.5in 8.5in;
+    }
+/* img {
+    
+    bottom: 100px !important;
+    right: -192px !important;
+    z-index: -1;
+ }
+*/
+
+.sep {
+	     border: 1px solid black !important;	
+        border-bottom:5px solid black !important;
+        
+            }
+.sep td  {
+        padding-bottom:5px solid black !important;
+       
+    }
+
+.left {
+  bottom: 100px !important;
+  right: 170px !important;  
+}
+
+.right {
+  bottom: 96px !important;
+  right: -174px !important; */
+}
+.h3x{
+	font-family: sans-serif;
+   font-size:14;
+   text-align: center;
+   margin-top:5px !important;
+   line-height: 5px !important;
+}
+.h3y{
+	font-family: sans-serif;
+   font-size:14;
+   text-align: center;
+   margin-top:5px !important;
+   line-height: 5px !important;
+}
+.h3z{
+	font-family: sans-serif;
+   font-size:14;
+   text-align: center;
+   margin-top:5px !important;
+   line-height: 5px !important;
+}
+.h3a{
+   font-family: sans-serif;
+   font-size:14;
+   text-align: center;
+   margin-top:5px !important;
+   line-height: 5px !important;
+}
+.tablex {
+	font-size:14 !important;
+	text-alignment:center;
+	width:80%;
+        margin-left:auto;
+        margin-right:auto;
+}
+
+
+

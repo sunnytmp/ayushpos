@@ -45,10 +45,21 @@
     </style>
      <link href="<c:url value='/static/css/bootstrap.css' />" rel="stylesheet"></link>
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
-     
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+      <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.9.0.js"></script>
+      <script src="<c:url value='/static/js/app.js' />"></script>
+      <script src="<c:url value='/static/js/service/po_service.js' />"></script>
+      <script src="<c:url value='/static/js/controller/po_controller.js' />"></script>
   </head>
-  <body ng-app="myApp" class="ng-cloak" style="background-color:wheat;">
-  
+  <body ng-app="myApp" class="ng-cloak" , style="background-color:wheat;">
+      <%
+    if (request.getSession().getAttribute("userid_apos") == null) {
+  	  out.print("Un-Authorized Access Attempt! This attempt has sent an alert!");  
+  	  return;
+    }
+      %>
+      
       <div class="generic-container" ng-controller="POController as ctrl" ng-init="ctrl.createPOS()">
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">Purchase </span></div>
@@ -111,7 +122,7 @@
                           <div class="row">
                      
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="file">Order Date</label> /* get date from system */
+                              <label class="col-md-2 control-lable" for="file">Order Date</label> <!--   get date from system -->
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.po.orderDt" name="orderdate" class="orderdate form-control input-sm" placeholder="Order date" required/>
                                   <div class="has-error" ng-show="myForm.$dirty">
@@ -138,6 +149,23 @@
                           </div>
                       </div> 
                       
+                      <div class="row">
+                     
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="file">Total Purchase Amount</label> 
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.po.totAmt" name="totalamt" class="totalamt form-control input-sm" placeholder="Confirmed Purchase Amount" required/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.deliverydate.$error.required">This is a required field</span>
+                                    
+                                      <span ng-show="myForm.deliverydate.$invalid">Purchase Amount field is required </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> 
+                      
+                      
+                      
                        <div class="row">
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Notes</label>
@@ -146,29 +174,27 @@
                               </div>
                           </div>
                       </div>
-
-						<button type="button" ng-model="ctrl.po.id" ng-click=ctrl.sendPoId(ctrl.po.id) >Add Items</button>
-
-
-
+                     
+                     <button type="button" ng-click='ctrl.sendPoId(ctrl.po.orderNumber,suppliername,ctrl.po.orderDt,ctrl.po.deliveryDt,ctrl.po.notes)'>Add Stock Items</button>
+                     
                       <div class="row">
                           <div class="form-actions floatRight">
-                              <input type="submit"  value="{{!ctrl.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <input type="submit"  value="{{!ctrl.po.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                           </div>
                       </div>
                   </form>
               </div>
-          </div>
+         
+          
           <div class="panel panel-default">
                 <!-- Default panel contents -->
               <div class="panel-heading"><span class="lead">Order List </span></div>
               <div class="tablecontainer">
                   <table class="table table-hover">
-                      <thead>
+                  <thead>
                           <tr>
                               <th>Order Number</th>
-                              <th>Supplier </th>
                               <th>Order Date</th>
                                <th>Delivered On</th>
                                <th>Total Amount</th>
@@ -183,22 +209,18 @@
                               <td><span ng-bind="u.sup.name"></span></td>
                                  <td><span ng-bind="u.orderDt"></span></td>
                                  <td><span ng-bind="u.deliveryDt"></span></td>
-                                 <td><span ng-bind="u.TotAmt"></span></td>
+                                 <td><span ng-bind="u.totAmt"></span></td>
                               <td><span ng-bind="u.notes"></span></td>
-
                               <td>
                               <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
                               </td>
-                          </tr>
+                          
                       </tbody>
                   </table>
               </div>
           </div>
       </div>
-       
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-      <script src="<c:url value='/static/js/app.js' />"></script>
-      <script src="<c:url value='/static/js/service/po_service.js' />"></script>
-      <script src="<c:url value='/static/js/controller/po_controller.js' />"></script>
+       </div>
+      
   </body>
 </html>

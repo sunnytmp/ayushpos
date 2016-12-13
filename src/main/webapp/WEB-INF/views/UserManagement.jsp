@@ -47,14 +47,18 @@
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
   </head>
   <body ng-app="myApp" class="ng-cloak">
-  
+  <%
+    if (request.getSession().getAttribute("userid_apos") == null) {
+  	  out.print("Un-Authorized Access Attempt! This attempt has sent an alert!");  
+  	  return;
+    }
+      %>
       <div class="generic-container" ng-controller="UserController as ctrl">
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">Buyer Registration </span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       <input type="hidden" ng-model="ctrl.user.id" />
-
  					<div class="row">
                      
                           <div class="form-group col-md-12">
@@ -76,7 +80,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Full Name</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.user.username" name="uname" class="username form-control input-sm" placeholder="Enter your name" required ng-minlength="3"/>
+                                  <input type="text" ng-model="ctrl.user.username" name="username" class="username form-control input-sm" placeholder="Enter your name" required ng-minlength="3"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.uname.$error.required">This is a required field</span>
                                       <span ng-show="myForm.uname.$error.minlength">Minimum length required is 3</span>
@@ -91,7 +95,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Phone</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.user.phone" name="uname" class="phone form-control input-sm" placeholder="Enter your phone" required ng-minlength="10"/>
+                                  <input type="text" ng-model="ctrl.user.phone" name="phone" class="phone form-control input-sm" placeholder="Enter your phone" required ng-minlength="10"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.phone.$error.required">This is a required field</span>
                                       <span ng-show="myForm.phone.$error.minlength">Minimum length required is 10</span>
@@ -105,7 +109,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">fax</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.user.fax" name="uname" class="fax form-control input-sm" placeholder="Enter your fax" required ng-minlength="10"/>
+                                  <input type="text" ng-model="ctrl.user.fax" name="fax" class="fax form-control input-sm" placeholder="Enter your fax" required ng-minlength="10"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.phone.$error.required">This is a required field</span>
                                       <span ng-show="myForm.phone.$error.minlength">Minimum length required is 10</span>
@@ -119,7 +123,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Address</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.user.address" class="form-control input-sm" placeholder="Enter your Address. [This field is validation free]"/>
+                                  <input type="text" ng-model="ctrl.user.address" class="address form-control input-sm" placeholder="Enter your Address. [This field is validation free]"/>
                               </div>
                           </div>
                       </div>

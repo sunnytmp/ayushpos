@@ -10,9 +10,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%
+    if (request.getSession().getAttribute("userid_apos") == null) {
+  	  out.print("Un-Authorized Access Attempt! This attempt has sent an alert!");  
+  	  return;
+    }
+      %>
 
 <%  
-			String CONNECTION_URL="jdbc:mysql://localhost:3306/localview";
+			String CONNECTION_URL="jdbc:mysql://localhost:3306/usersdb";
 			String USERNAME="root";  
 			String PASSWORD="form";  
 			java.sql.Connection con=null;

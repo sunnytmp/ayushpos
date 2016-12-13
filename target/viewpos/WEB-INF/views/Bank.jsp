@@ -66,6 +66,12 @@
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
   </head>
   <body ng-app="myApp" class="ng-cloak" >
+  <%
+    if (request.getSession().getAttribute("userid_apos") == null) {
+  	  out.print("Un-Authorized Access Attempt! This attempt has sent an alert!");  
+  	  return;
+    }
+      %>
   <form method="POST" action="/viewpos/bankdb">
       <div class="generic-container">
           <div class="panel panel-default">
@@ -149,6 +155,7 @@
         
       </div>
        
-      </form>  
+      </form>
+        
   </body>
 </html>

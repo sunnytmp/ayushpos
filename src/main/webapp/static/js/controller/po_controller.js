@@ -18,11 +18,12 @@
  */
 'use strict';
 App.controller('POController', ['$rootScope','$scope', 'POService', '$window' , '$location',  function($rootScope,$scope, POService, $window, $location) {
-          var self = this;
-          self.user={id:null,username:'',address:'',email:'',age:0,accountid:0};
+	
+	      var self = this;
+          self.user={id:null,orderNumber:'',orderDt :'',deliveryDt:'',totAmt:'', notes:'',suppliername:''};
           self.users=[];
           self.CreatePOS={id:null,name:'',descp:'',phone:'',phone2:'',address1:'',address2:'',address3:''};
-          
+      //    $scope.ctrl=0;
           self.fetchAllPOS = function(){
               POService.fetchAllPOS()
                   .then(
@@ -53,9 +54,10 @@ App.controller('POController', ['$rootScope','$scope', 'POService', '$window' , 
           
           
          
-  self.sendPoId = function(poid){
-	  POService.sendPoId(poid);
+  self.sendPoId = function(ordernumber,suppliername,orderdata,deleverydate,notes){
 	  
+	  POService.sendPoId(ordernumber,suppliername,orderdata,deleverydate,notes);
+	
      
 };
   
@@ -142,7 +144,7 @@ App.controller('POController', ['$rootScope','$scope', 'POService', '$window' , 
  
            
           self.reset = function(){
-              self.user={id:null,username:'',address:'',email:'',accountid:'', phone:'',job:'',customertype:'', fax:''};
+              self.po={id:null,orderNumber:'',orderDt :'',deliveryDt:'',totAmt:'', notes:'',suppliername:''};
               $scope.myForm.$setPristine(); //reset Form
           };
  

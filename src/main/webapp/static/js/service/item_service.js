@@ -17,8 +17,8 @@
  * from RiverLog Software.
  */
 'use strict';
-var myaws = 'http://localhost'; // Declare a global variable
-// var myaws = 'http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com';
+// var myaws = 'http://localhost'; // Declare a global variable
+  var myaws = 'http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com';
 
 App.factory('ItemService', ['$http', '$q', function($http, $q){
  
@@ -59,12 +59,26 @@ App.factory('ItemService', ['$http', '$q', function($http, $q){
                                         return response.data;
                                     }, 
                                     function(errResponse){
+                                    	alert(" An Item Named " + Item.name +" Already Exist. Did you give \n duplicate barcode?")
                                         console.error('Error while creating Item');
                                         return $q.reject(errResponse);
                                     }
                             );
             },
-            
+            //This is for the purchase order item entry
+            createPOItem: function(POItem){
+            	console.log(JSON.stringify(POItem))	;
+                    return $http.post(myaws+':8080/restpos/PurchaseOrder/', POItem)
+                            .then(
+                                    function(response){
+                                        return response.data;
+                                    }, 
+                                    function(errResponse){
+                                        console.error('Error while creating Item');
+                                        return $q.reject(errResponse);
+                                    }
+                            );
+            },
 				
             updateItem: function(Item, id){
             	
