@@ -41,7 +41,7 @@ App.controller('CatController', ['$scope', 'CatService', '$window' , '$location'
             url: '/viewpos'       
         }, {
             title: 'Sales',
-            url: 'sales.html'
+            url: 'sales'
     }];
 
     $scope.currentTab = 'Customer.html';
@@ -105,7 +105,7 @@ App.controller('CatController', ['$scope', 'CatService', '$window' , '$location'
  
           self.submit = function() {
               if(self.cat.id==null){
-                  console.log('Saving New Categiry', self.cat);    
+                  console.log('Saving New Category', self.cat);    
                   self.createCat(self.cat);
               }else{
                   self.updateCat(self.cat, self.cat.id);
@@ -137,7 +137,8 @@ App.controller('CatController', ['$scope', 'CatService', '$window' , '$location'
  
            
           self.reset = function(){
-              self.cat={id:null,categoryname:'',categorydescp:''};
+           //   self.cat={id:null,categoryname:'',categorydescp:''};
+        	self.cat = null;
               $scope.myForm.$setPristine(); //reset Form
           };
  

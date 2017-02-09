@@ -17,13 +17,14 @@
  * from RiverLog Software.
  */
 'use strict';
- 
+// var myaws ="http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com";
+// var myaws = "http://localhost"
 var App = angular.module('myApp',[]);
 App.controller('POSController', function ($scope,$http,$q) {
 
 	   $scope.food= function(){
 		
-	                    return $http.get('http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080/restpos/item/')
+	                    return $http.get(myaws+':8080/restpos/item/')
 	  
 	                            .then(
 	                                    function successCallback(response) {
@@ -158,7 +159,5 @@ App.controller('POSController', function ($scope,$http,$q) {
 	  ];
 	  $scope.orderList = "name";
 	};
-		
-		
-		
-	});
+});
+

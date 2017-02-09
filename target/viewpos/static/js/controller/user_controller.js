@@ -19,7 +19,7 @@
 'use strict';
 App.controller('UserController', ['$scope', 'UserService', '$window' , '$location',  function($scope, UserService, $window, $location) {
           var self = this;
-          self.user={id:null,username:'',address:'',email:'',age:0,accountid:0};
+          self.user={id:null,accountid:0,username:'',phone:'',fax:'',address:'',email:'',age:0,job:'',customerType:''};
           self.users=[];
                
           self.fetchAllUsers = function(){
@@ -43,7 +43,7 @@ App.controller('UserController', ['$scope', 'UserService', '$window' , '$locatio
             url: 'category'       
         }, {
             title: 'Sales',
-            url: 'sales.html'
+            url: 'sales'
         },  {
         	title: 'Item',
         	url: 'Item?val=0'
@@ -62,11 +62,19 @@ App.controller('UserController', ['$scope', 'UserService', '$window' , '$locatio
         },{
         	title: 'Reports',
         	url: 'report'
-       }];
+       },{
+    	   title: 'Logout',
+    	   url: 'logout'
+}
+       
+       ];
 
-    $scope.currentTab = 'Customer.html';  
+    $scope.currentTab = '';  
 
     $scope.onClickTab = function (tab) {
+    	if (tab.url === "sales"){
+    		location.href = "sales";
+    	}
         $scope.currentTab = tab.url;
     }
     
@@ -161,7 +169,7 @@ App.controller('UserController', ['$scope', 'UserService', '$window' , '$locatio
  
            
           self.reset = function(){
-              self.user={id:null,username:'',address:'',email:'',accountid:'', phone:'',job:'',customertype:'', fax:''};
+              self.user={id:null,username:'',address:'',email:'',age:0,accountid:'', phone:'',job:'',customerType:'', fax:''};
               $scope.myForm.$setPristine(); //reset Form
           };
  

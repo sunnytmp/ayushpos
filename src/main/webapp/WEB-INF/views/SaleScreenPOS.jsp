@@ -122,11 +122,11 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
           <div class="panel panel-primary">
             <div class="panel-heading">
               <h3 class="panel-title">Order Summary</h3>
-     	      How many of current Item ?  <input type="number" name="input" ng-model="example.value"
+     	      How many of current Items ?  <input type="number" name="input" ng-model="example.value"
             max="99" style="color:green" required ng-change="getChange(example.value)">
             </div>
 			
-            <div class="panel-body" style="max-height:320px; overflow:auto;">
+            <div id="listox" class="panel-body" style="max-height:320px; overflow:scroll;">
               <div class="text-warning" ng-hide="order.length">
                 Nothing ordered yet !
               </div>

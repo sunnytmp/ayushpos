@@ -25,7 +25,13 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
-  margin: 10;
+ margin: 10;
+ margin: 0; 
+ padding: 0; 
+ padding-top: 6px;
+ text-align: center;
+ background-color: #FFFFFF; 
+ style="line-height:0.8em;"
 }
 
 article,
@@ -6081,7 +6087,7 @@ button.close {
 .carousel-inner > .item > a > img {
   line-height: 1;
 }
-@media all and (transform-3d), (-webkit-transform-3d) {
+@media screem and (transform-3d), (-webkit-transform-3d) {
   .carousel-inner > .item {
     -webkit-transition: -webkit-transform .6s ease-in-out;
          -o-transition:      -o-transform .6s ease-in-out;
@@ -6537,7 +6543,7 @@ button.close {
 }
 @media print {
   .visible-print {
-    display: block !important;
+    display: none !important;
   }
   table.visible-print {
     display: table;
@@ -6579,4 +6585,48 @@ button.close {
     display: none !important;
   }
 }
+@media print {
+    margin-top: 100px !important;
+  }
+  
+}
+.left {
+  bottom: 100px !important;
+  right: 170px !important;  
+}
+
+.right {
+  bottom: 96px !important;
+  right: 353px !important; 
+}
+
+.h3x{
+	font-family: sans-serif;
+   font-size:14;
+   text-align: center;
+   margin-top:5px !important;
+   line-height: 5px !important;
+}
+.h3y{
+	font-family: sans-serif;
+   font-size:14;
+   text-align: center;
+   margin-top:5px !important;
+   line-height: 5px !important;
+}
+.h3z{
+	font-family: sans-serif;
+   font-size:14;
+   text-align: center;
+   margin-top:5px !important;
+   line-height: 5px !important;
+}
+.h3a{
+   font-family: sans-serif;
+   font-size:14;
+   text-align: center;
+   margin-top:5px !important;
+   line-height: 5px !important;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */

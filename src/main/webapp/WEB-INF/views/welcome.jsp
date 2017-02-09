@@ -28,8 +28,8 @@
 <script src="<c:url value='/static/js/controller/sup_controller.js' />"></script>
 <script src="<c:url value='/static/js/service/supplier_service.js' />"></script>
 
- <!--   <script> var myaws = 'http://localhost'; </script> -->
- <script> var myaws = 'http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com'; </script> 
+    <script> var myaws = 'http://localhost'; </script> 
+ <!-- <script> var myaws = 'http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com'; </script> -->
 </head>
   <body ng-app="myApp" class="ng-cloak">
   <% if (request.getSession().getAttribute("userid_apos") == null) {

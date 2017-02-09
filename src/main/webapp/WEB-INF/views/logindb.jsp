@@ -19,6 +19,7 @@
 			ResultSet rs=null;
 			String userid=request.getParameter("uname"); 
 			String pwd=request.getParameter("pword"); 
+			String shopbranch=request.getParameter("branches");
 			try{
 				Class.forName("com.mysql.jdbc.Driver").newInstance(); 
 				con = DriverManager.getConnection(CONNECTION_URL,USERNAME,PASSWORD); 
@@ -33,7 +34,10 @@
 								{ 
 								    HttpSession session2 = request.getSession();  
 							        session2.setAttribute("userid_apos",userid);  
-									response.sendRedirect("/viewpos/welcome");
+							        session2.setAttribute("shopbranch", shopbranch);
+							        response.sendRedirect("/viewpos/welcome"); 
+									
+								
 								} 
 			  				else 
 								{ 

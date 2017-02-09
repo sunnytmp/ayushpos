@@ -17,8 +17,8 @@
  * from RiverLog Software.
  */
 'use strict';
-// var myaws = 'http://localhost:8080'; // Declare a global variable
- var myaws = 'http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080';
+ var myaws = 'http://localhost:8080'; // Declare a global variable
+// var myaws = 'http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com:8080';
 
 App.factory('CatService', ['$http', '$q', function($http, $q){
  

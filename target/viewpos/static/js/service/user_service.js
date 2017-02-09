@@ -17,10 +17,10 @@
  * from RiverLog Software.
  */
 'use strict';
-var myVar = 'http://localhost'; // Declare a global variable
-var myaws = 'http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com';
+//  var myaws = 'http://localhost:8080'; // Declare a global variable
+ var myaws = 'http://ec2-52-25-144-174.us-west-2.compute.amazonaws.com';
 App.factory('UserService', ['$http', '$q', function($http, $q){
- 
+
     return {
          
             fetchAllUsers: function() {
@@ -51,14 +51,13 @@ App.factory('UserService', ['$http', '$q', function($http, $q){
             
 				
             updateUser: function(user, id){
-                    return $http.put(myaws +':8080/user/'+id, user)
-
+                    return $http.put(myaws +':8080/restpos/user/'+id, user)
                             .then(
                                     function(response){
                                         return response.data;
                                     }, 
                                     function(errResponse){
-                                        console.error('Error while updating user');
+                                    	console.error('Error while updating user');
                                         return $q.reject(errResponse);
                                     }
                             );

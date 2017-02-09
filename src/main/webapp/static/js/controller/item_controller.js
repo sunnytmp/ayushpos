@@ -27,15 +27,19 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
            self.val = "";  
            self.po = {"id":16};
 		    self.Categories={id:null,name:'',description:''};
-        //  self.Categories=[];
+		//  self.Categories=[];
 		  //  with item included 
 		//   self.pos={"id":null,"OrderNumber":null,"rate":null,"orderDt":null,"deliveryDt":null,"qty":0,"itemId":0,"sup":null,"totAmt":0,"notes":null,"Item":{}};
 		//Without item included.
-		    self.pos={"orderNumber":null,"rate":null,"orderDt":null,"deliveryDt":null,"qty":0,"itemcd":0,"sup":0,"totAmt":0,"notes":null,"catid":0,"itemdesc":null,"Item":{}};
-   $scope.updateCatId = function() {
-	  
+		    self.pos={"orderNumber":null,"rate":null,"orderDt":null,"deliveryDt":null,"qty":0,"itemcd":0,"sup":0,"totAmt":0,"notes":null,"catid":0,"itemdesc":null,"Item":{},"branch":null};
+    $scope.updateCatId = function() {
 	categoridi = $scope.categories;
 	console.log('categoryid ' , categoridi);
+	$scope.branchstyle = {
+			"color" : "white",
+	        "background-color" : "blue",
+	        
+	}
 	self.val = $window.location.href;
 	if (self.val.indexOf('=') > -1 ){
 	  self.val = self.val.substring(self.val.indexOf('=')+1);
@@ -141,7 +145,7 @@ App.controller('ItemController', ['$scope', 'ItemService', '$window' , '$locatio
 	        		 POItem.totAmt=self.pos.Item.price;
 	        		 POItem.notes=self.pos.notes;
 	        		 POItem.supplierId=self.pos.Item.supplierId;
-	        		 
+	        		 POItem.brnach=self.pos.Item.branch;
 	        		 /* Deletes for later use */
 	        		 delete POItem.sup;
 	        		 delete POItem.rate;

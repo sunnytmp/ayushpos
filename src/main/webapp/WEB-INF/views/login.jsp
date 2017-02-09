@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import ="java.sql.*" %>
+<%@page import ="javax.sql.*" %>
+<%@ page import ="java.io.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -61,6 +64,14 @@ a.myButton:active {
 
 
 <body style="background:url('/viewpos/resources/images/Superma.jpg');">
+<script>
+function checkSelection() {
+   if(document.getElementById("branches").value === "---Please Select A Branch---" ){
+	   alert ("Not selected");
+	   return false;
+   }
+}
+</script>
 <div>
 	<div class="row" style="background-color: #d5d5d5;">
 		 <div class="col-sm-4"></div>
@@ -90,10 +101,19 @@ a.myButton:active {
                     			<label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
                     			<input type="password" class="form-control" id="pword" name="pword" placeholder="Enter password">
                 		</div>
+                			<div class="form-group">
+                			 <label for="branchname"><span class="glyphicon glyphicon-branch"></span> Branch Name</label><br>
+                		<% ResultSet branches = getBranches(); %>
+                		<select name="branches" id="branches">
+                		  <option> ---Please Select A Branch---</option>
+                		 <% while (branches.next()) { %>
+        					<option><% out.print(branches.getString("branchname"));} %></option>
+   						</select>
+						</div>
                 		<div class="checkbox">
                      			<label><input type="checkbox" value="" checked>Remember me</label>
                 		</div>
-             		<input type="submit" value="Login" class="btn btn-default btn-success btn-block"/>
+             		<input type="submit" value="Login" onclick="return checkSelection()" class="btn btn-default btn-success btn-block"/>
              				<div class="modal-footer">
           						<button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal">	
           						<span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -111,6 +131,7 @@ a.myButton:active {
       <!-- -------------This is modal for register----------------- -->
               
   	 <!--<div class="container">  -->
+  	 
     <div class="modal fade" id="register" role="dialog">
         <div class="modal-dialog">
         <div class="modal-content">
@@ -119,6 +140,10 @@ a.myButton:active {
                       <h4 style="color:red;"><span class="glyphicon glyphicon-lock"></span> REGISTER </h4>
                </div>
                 <div class="modal-body">
+                <%  if (request.getSession().getAttribute("userid_apos") == null) {
+          out.print("Un-Authorized Access Attempt! This attempt has sent an alert!");
+          return;
+    }  %>
                      <form method="POST" action="/viewpos/registerdb">
                             <div class="form-group">
                                 	<label for="firstname"><span class="glyphicon glyphicon-user"></span> First Name</label>
@@ -146,7 +171,7 @@ a.myButton:active {
 									<select name = "parameters">
 										<option selected="true" style="display:none;">Select Role</option>
         								<option value = "admin">Administrator</option>
-        								<option value = "staff">Staff</option>
+        								<option value = "staff">Sales Staff</option>
     								</select>
                            	</div>
                            	
@@ -162,5 +187,25 @@ a.myButton:active {
     	 <!-------------------This is end of modal for login------------------------------------->
    		
    </div>
+   <%!
+   public ResultSet getBranches() {
+   String serverlocal = "jdbc:mysql://localhost:3306/";
+	String CONNECTION_URL=serverlocal+"usersdb";
+	String USERNAME="root";  
+	String PASSWORD="form";  
+	java.sql.Connection con=null;
+	ResultSet rs=null;
+	
+	try{
+		Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+		con = DriverManager.getConnection(CONNECTION_URL,USERNAME,PASSWORD); 
+		Statement st= con.createStatement();
+		rs=st.executeQuery("select branchname from usersdb.branches");
+	}catch(Exception et){
+	 	
+	}
+	return rs;
+   }
+   %>
 </body>
 </html>

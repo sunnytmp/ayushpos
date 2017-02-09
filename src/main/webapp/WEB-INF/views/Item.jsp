@@ -69,11 +69,18 @@
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
 				 
                       <input type="hidden" ng-model="ctrl.Item.id" />
-
+              
 					  <input type="hidden" ng-model="ctrl.val" value={{ctrl.val}}/>
-						
-
- 						<div class="row">
+					   <div class="row">
+                      <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="file">Branch</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.Item.branch" ng-style="branchstyle" ng-init="ctrl.Item.branch='<%=request.getSession().getAttribute("shopbranch").toString() %>'" value="<%=request.getSession().getAttribute("shopbranch").toString() %>" placeholder="<%=request.getSession().getAttribute("shopbranch").toString() %>" name="branchname" class="branch form-control input-sm" />
+                                  </div>
+                              </div>
+                          </div>
+                          
+					  <div class="row">
                      
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Bar Code</label>
@@ -112,9 +119,7 @@
 				<option ng-repeat="categories in ctrl.Categories" ng-selected="ctrl.Item.category.name == categories.name" value={{categories}}>{{categories.name}}</option>
 				 
 				</select>
-		
-				
-								  <div class="has-error" ng-show="myForm.$dirty">
+				  <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.name.$error.required">This is a required field</span>
                                     
                                       <span ng-show="myForm.name.$invalid">This field is invalid </span>
@@ -271,14 +276,14 @@
                               </div>
                           </div>
                       </div>
- 
- 
+ 					 
                       <div class="row">
                           <div class="form-actions floatRight">
                               <input type="submit"  value="{{!ctrl.Item.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                           </div>
                       </div>
+                    
                   </form>
               </div>
           </div>
@@ -319,7 +324,10 @@
           </div>
 		    	 
       </div>
-     
+      <script>
+        var branch = "<%=request.getSession().getAttribute("shopbranch").toString() %>";
+       
+      </script>
 	   
   </body>
 </html>
